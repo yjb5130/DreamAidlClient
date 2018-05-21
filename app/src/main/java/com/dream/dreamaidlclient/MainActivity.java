@@ -16,6 +16,7 @@ public class MainActivity extends Activity {
     private Button mSetAidlIntBtn;
     private Button mSetAidlByteBtn;
     private Button mSetAidlStringBtn;
+    private Button mSetAidlBytesBtn;
     private TextView mResultText;
 
     @Override
@@ -52,6 +53,24 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 mTestApiHelper.setAidlString("Hello World");
                 mResultText.setText("SetAidlString: " + mTestApiHelper.getAidlString());
+            }
+        });
+
+        mSetAidlBytesBtn = (Button) findViewById(R.id.set_aidl_bytes);
+        mSetAidlBytesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                byte[] value = new byte[] {
+                    (byte)33, (byte)34, (byte)35, (byte)36, (byte)37
+                };
+                mTestApiHelper.setAidlBytes(value);
+
+                byte[] results = mTestApiHelper.getAidlBytes();
+                StringBuffer buffer = new StringBuffer("SetAidlBytes: ");
+                for (byte byteValue : results) {
+                    buffer.append(byteValue + ",");
+                }
+                mResultText.setText(buffer.toString());
             }
         });
     }

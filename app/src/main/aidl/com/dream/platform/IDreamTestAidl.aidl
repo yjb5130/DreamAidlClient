@@ -10,4 +10,7 @@ interface IDreamTestAidl {
 
     String getAidlString();
     void setAidlString(String string);
+
+    byte[] getAidlBytes();
+    void setAidlBytes(in byte[] value);
 }

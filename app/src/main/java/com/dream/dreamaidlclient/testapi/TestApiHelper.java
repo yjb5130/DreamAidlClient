@@ -95,4 +95,26 @@ public class TestApiHelper {
             e.printStackTrace();
         }
     }
+
+    public byte[] getAidlBytes() {
+        byte[] value = null;
+        try {
+            if (mDreamManager != null) {
+                value = mDreamManager.getDreamTestApi().getAidlBytes();
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+
+    public void setAidlBytes(byte[] value) {
+        try {
+            if (mDreamManager != null) {
+                mDreamManager.getDreamTestApi().setAidlBytes(value);
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 }
