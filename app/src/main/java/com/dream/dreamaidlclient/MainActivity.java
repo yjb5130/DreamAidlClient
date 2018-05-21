@@ -14,6 +14,7 @@ public class MainActivity extends Activity {
     private TestApiHelper mTestApiHelper = null;
 
     private Button mSetAidlIntBtn;
+    private Button mSetAidlByteBtn;
     private TextView mResultText;
 
     @Override
@@ -31,6 +32,16 @@ public class MainActivity extends Activity {
                 mIntValue++;
                 mTestApiHelper.setAidlIntValue(mIntValue);
                 mResultText.setText("SetAidlInt: " + mTestApiHelper.getAidlIntValue());
+            }
+        });
+
+        mSetAidlByteBtn = (Button) findViewById(R.id.set_aidl_byte);
+        mSetAidlByteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIntValue += 2;
+                mTestApiHelper.setAidlByteValue((byte)mIntValue);
+                mResultText.setText("SetAidlByte: " + mTestApiHelper.getAidlByteValue());
             }
         });
     }
