@@ -73,4 +73,26 @@ public class TestApiHelper {
             e.printStackTrace();
         }
     }
+
+    public String getAidlString() {
+        String string = null;
+        try {
+            if (mDreamManager != null) {
+                string = mDreamManager.getDreamTestApi().getAidlString();
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return string;
+    }
+
+    public void setAidlString(String string) {
+        try {
+            if (mDreamManager != null) {
+                mDreamManager.getDreamTestApi().setAidlString(string);
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 }
