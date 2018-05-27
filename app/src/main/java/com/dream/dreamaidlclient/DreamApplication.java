@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 
+import com.dream.platform.IDreamCallbackListener;
 import com.dream.platform.IDreamSDKManager;
 
 import java.util.ArrayList;
@@ -54,11 +56,30 @@ public class DreamApplication extends Application {
                     }
                 }
             }
+
+            try {
+                mDreamManager.registerCallbackListener(DreamApplication.mCallback);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
+            try {
+                mDreamManager.unregisterCallbackListener(DreamApplication.mCallback);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
             mDreamManager = null;
+        }
+    };
+
+    private static IDreamCallbackListener mCallback = new IDreamCallbackListener.Stub() {
+        @Override
+        public void notifyMessage(int status) throws RemoteException {
+            Log.d(TAG, "status: " + status);
         }
     };
 
