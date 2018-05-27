@@ -41,6 +41,13 @@
             android:textAllCaps="false"
             android:text="SetAidlBytes"/>
 
+        <Button
+            android:id="@+id/set_aidl_base_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="SetAidlBaseItem"/>
+
     </GridLayout>
 
     <TextView

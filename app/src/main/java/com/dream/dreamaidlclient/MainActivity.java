@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.dream.dreamaidlclient.testapi.TestApiHelper;
+import com.dream.platform.enums.EnumBaseItem;
+import com.dream.platform.parcel.EntityBaseParcel;
+import com.dream.platform.parcel.EnumBaseParcel;
 
 public class MainActivity extends Activity {
 
@@ -17,6 +20,7 @@ public class MainActivity extends Activity {
     private Button mSetAidlByteBtn;
     private Button mSetAidlStringBtn;
     private Button mSetAidlBytesBtn;
+    private Button mSetAidlBaseItemBtn;
     private TextView mResultText;
 
     @Override
@@ -71,6 +75,35 @@ public class MainActivity extends Activity {
                     buffer.append(byteValue + ",");
                 }
                 mResultText.setText(buffer.toString());
+            }
+        });
+
+        mSetAidlBaseItemBtn = (Button) findViewById(R.id.set_aidl_base_item);
+        mSetAidlBaseItemBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EntityBaseParcel item = new EntityBaseParcel();
+                item.mEnumParcel = EnumBaseParcel.BASE1;
+                item.mEnumValue = EnumBaseItem.ITEM1;
+                item.mIntValue = 12;
+                item.mLongValue = 23;
+                item.mBooleanValue = true;
+                item.mFloatValue = 0.1f;
+                item.mDoubleValue = 0.2f;
+                item.mStringValue = "testBaseItem";
+                mTestApiHelper.setBaseParcel(item);
+
+                EntityBaseParcel destItem = mTestApiHelper.getBaseParcel();
+                StringBuffer buffer = new StringBuffer();
+                buffer.append("EntityBaseParcel mEnumParcel: " + destItem.mEnumParcel);
+                buffer.append(", mEnumValue: " + destItem.mEnumValue);
+                buffer.append(", mIntValue: " + destItem.mIntValue);
+                buffer.append(", mLongValue: " + destItem.mLongValue);
+                buffer.append(", mBooleanValue: " + destItem.mBooleanValue);
+                buffer.append(", mFloatValue: " + destItem.mFloatValue);
+                buffer.append(", mDoubleValue: " + destItem.mDoubleValue);
+                buffer.append(", mStringValue: " + destItem.mStringValue);
+                mResultText.setText(buffer);
             }
         });
     }

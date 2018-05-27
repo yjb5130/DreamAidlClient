@@ -6,6 +6,7 @@ import android.os.RemoteException;
 import com.dream.dreamaidlclient.DreamApplication;
 import com.dream.dreamaidlclient.ServiceConnectListener;
 import com.dream.platform.IDreamSDKManager;
+import com.dream.platform.parcel.EntityBaseParcel;
 
 public class TestApiHelper {
 
@@ -112,6 +113,28 @@ public class TestApiHelper {
         try {
             if (mDreamManager != null) {
                 mDreamManager.getDreamTestApi().setAidlBytes(value);
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public EntityBaseParcel getBaseParcel() {
+        EntityBaseParcel baseParcel = null;
+        try {
+            if (mDreamManager != null) {
+                baseParcel = mDreamManager.getDreamTestApi().getBaseParcel();
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return baseParcel;
+    }
+
+    public void setBaseParcel(EntityBaseParcel item) {
+        try {
+            if (mDreamManager != null) {
+                mDreamManager.getDreamTestApi().setBaseParcel(item);
             }
         } catch (RemoteException e) {
             e.printStackTrace();
