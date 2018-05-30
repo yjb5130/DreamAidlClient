@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.dream.platform.IDreamCallbackListener;
 import com.dream.platform.IDreamSDKManager;
+import com.dream.platform.parcel.EntityBaseEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +81,13 @@ public class DreamApplication extends Application {
         @Override
         public void notifyMessage(int status) throws RemoteException {
             Log.d(TAG, "status: " + status);
+        }
+
+        @Override
+        public void notifySystemEvent(EntityBaseEvent event) throws RemoteException {
+            Log.d(TAG, "msgID: " + event.msgID);
+            Log.d(TAG, "info: " + event.info);
+            Log.d(TAG, "error: " + event.error);
         }
     };
 
